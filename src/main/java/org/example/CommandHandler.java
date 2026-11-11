@@ -4,6 +4,9 @@ import org.example.command.AboutCommand;
 import org.example.command.AuthorCommand;
 import org.example.command.Command;
 import org.example.command.HelpCommand;
+import org.example.command.RamCommand;
+import org.example.service.DefaultSystemMetricsService;
+import org.example.service.SystemMetricsService;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -13,8 +16,14 @@ public class CommandHandler {
     private final Map<String, Command> commands = new LinkedHashMap<>();
 
     public CommandHandler() {
+        this(new DefaultSystemMetricsService());
+    }
+
+    public CommandHandler(SystemMetricsService metricsService) {
         registerCommand(new AuthorCommand());
         registerCommand(new AboutCommand());
+        registerCommand(new RamCommand(metricsService));
+
         registerCommand(new HelpCommand(commands));
     }
 
