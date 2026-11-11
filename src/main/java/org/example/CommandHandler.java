@@ -1,9 +1,9 @@
 package org.example;
 
-import org.example.command.AboutCommand;
-import org.example.command.AuthorCommand;
-import org.example.command.Command;
-import org.example.command.HelpCommand;
+import org.example.command.*;
+import org.example.command.CpuCommand;
+import org.example.command.UptimeCommand;
+import org.example.service.CpuMonitorService;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -16,6 +16,8 @@ public class CommandHandler {
         registerCommand(new AuthorCommand());
         registerCommand(new AboutCommand());
         registerCommand(new HelpCommand(commands));
+        registerCommand(new CpuCommand());
+        registerCommand(new UptimeCommand());
     }
 
     public void registerCommand(Command command) {
