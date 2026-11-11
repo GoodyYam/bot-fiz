@@ -10,6 +10,8 @@ import org.example.command.UptimeCommand;
 import org.example.command.RamCommand;
 import org.example.service.DefaultSystemMetricsService;
 import org.example.service.SystemMetricsService;
+import org.example.command.StatusCommand;
+import org.example.service.CpuMonitorService;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -28,6 +30,7 @@ public class CommandHandler {
         registerCommand(new RamCommand(metricsService));
         registerCommand(new CpuCommand());
         registerCommand(new UptimeCommand());
+        registerCommand(new StatusCommand(metricsService, new CpuMonitorService()));
 
         registerCommand(new HelpCommand(commands));
     }
