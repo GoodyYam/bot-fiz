@@ -4,6 +4,9 @@ import org.example.command.AboutCommand;
 import org.example.command.AuthorCommand;
 import org.example.command.Command;
 import org.example.command.HelpCommand;
+import org.example.command.*;
+import org.example.command.CpuCommand;
+import org.example.command.UptimeCommand;
 import org.example.command.RamCommand;
 import org.example.service.DefaultSystemMetricsService;
 import org.example.service.SystemMetricsService;
@@ -23,6 +26,8 @@ public class CommandHandler {
         registerCommand(new AuthorCommand());
         registerCommand(new AboutCommand());
         registerCommand(new RamCommand(metricsService));
+        registerCommand(new CpuCommand());
+        registerCommand(new UptimeCommand());
 
         registerCommand(new HelpCommand(commands));
     }
