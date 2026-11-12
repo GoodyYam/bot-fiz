@@ -153,7 +153,7 @@ public class CpuMonitorService {
 
         return String.format(
                 "💻 Процессор (CPU):\n" +
-                        "• Доступно ядер: %d\n" +
+                        "• Доступно потоков: %d\n" +
                         "• Общая загрузка: %s\n" +
                         "• Загрузка процессом бота: %s\n" +
                         "• Load Average (1 мин): %s",
