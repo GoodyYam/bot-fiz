@@ -50,7 +50,7 @@ public class StatusCommand implements Command {
         StringBuilder sb = new StringBuilder("📊 Сводный статус сервера:\n\n");
 
         // 1. Блок CPU
-        sb.append("💻 CPU (").append(cores).append(" ядер):\n")
+        sb.append("💻 CPU (").append(cores).append(" потоков):\n")
                 .append("• Нагрузка: ").append(buildProgressBar(cpuLoad)).append("\n");
         if (loadAvg >= 0) {
             sb.append("• Load Average: ").append(String.format(Locale.US, "%.2f", loadAvg)).append("\n");
