@@ -67,7 +67,7 @@ class StatusCommandTest {
         String report = command.execute(new String[0]);
 
         assertTrue(report.contains("Сводный статус сервера"));
-        assertTrue(report.contains("12 ядер"));
+        assertTrue(report.contains("12 потоков"));
         assertTrue(report.contains("[████░░░░░░] 40.0%"));
         assertTrue(report.contains("1.25"));
         assertTrue(report.contains("[█████░░░░░] 50.0%"));

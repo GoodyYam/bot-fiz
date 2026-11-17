@@ -12,6 +12,7 @@ import org.example.service.DefaultSystemMetricsService;
 import org.example.service.SystemMetricsService;
 import org.example.command.StatusCommand;
 import org.example.service.CpuMonitorService;
+import org.example.command.CheckCommand;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -31,6 +32,7 @@ public class CommandHandler {
         registerCommand(new CpuCommand());
         registerCommand(new UptimeCommand());
         registerCommand(new StatusCommand(metricsService, new CpuMonitorService()));
+        registerCommand(new CheckCommand());
 
         registerCommand(new HelpCommand(commands));
     }

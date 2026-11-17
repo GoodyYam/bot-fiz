@@ -53,7 +53,7 @@ class CpuAndUptimeCommandsTest {
         assertFalse(command.getDescription().isEmpty());
 
         String output = command.execute(new String[0]);
-        assertTrue(output.contains("Доступно ядер: 8"));
+        assertTrue(output.contains("Доступно потоков: 8"));
         assertTrue(output.contains("37.5%"));
         assertTrue(output.contains("4.2%"));
         assertTrue(output.contains("1.15"));
