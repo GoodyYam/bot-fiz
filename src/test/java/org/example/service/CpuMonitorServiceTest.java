@@ -72,7 +72,7 @@ class CpuMonitorServiceTest {
 
         String cpuReport = service.getCpuStatusReport();
         assertNotNull(cpuReport);
-        assertTrue(cpuReport.contains("Доступно ядер:"));
+        assertTrue(cpuReport.contains("Доступно потоков:"));
 
         String uptimeReport = service.getUptimeReport();
         assertNotNull(uptimeReport);
