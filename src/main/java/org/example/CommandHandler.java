@@ -8,6 +8,7 @@ import org.example.command.*;
 import org.example.command.CpuCommand;
 import org.example.command.UptimeCommand;
 import org.example.command.RamCommand;
+import org.example.command.ServiceCommand;
 import org.example.service.DefaultSystemMetricsService;
 import org.example.service.SystemMetricsService;
 import org.example.command.StatusCommand;
@@ -33,6 +34,7 @@ public class CommandHandler {
         registerCommand(new UptimeCommand());
         registerCommand(new StatusCommand(metricsService, new CpuMonitorService()));
         registerCommand(new CheckCommand());
+        registerCommand(new ServiceCommand());
 
         registerCommand(new HelpCommand(commands));
     }
