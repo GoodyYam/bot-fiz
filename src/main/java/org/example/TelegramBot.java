@@ -15,8 +15,8 @@ public class TelegramBot implements LongPollingSingleThreadUpdateConsumer {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
-
-            String responseText = commandHandler.handle(messageText);
+            long userId = update.getMessage().getFrom().getId();
+            String responseText = commandHandler.handle(messageText, userId);
 
             SendMessage message = SendMessage.builder()
                     .chatId(chatId)

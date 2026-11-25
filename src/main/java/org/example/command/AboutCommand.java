@@ -15,4 +15,10 @@ public class AboutCommand implements Command {
     public String execute(String[] args) {
         return "Бот для удаленного мониторинга и администрирования серверов. Предоставляет сводку по утилизации ресурсов (CPU, RAM, диск), проверяет доступность сервисов и отправляет экстренные алерты при сбоях.";
     }
+
+    @Override
+    public boolean isPrivate() {
+        return false;
+    }
+
 }

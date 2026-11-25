@@ -38,4 +38,9 @@ public class HelpCommand implements Command {
         }
         return sb.toString().trim();
     }
+
+    @Override
+    public boolean isPrivate() {
+        return false;
+    }
 }
