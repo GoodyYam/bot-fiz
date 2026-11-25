@@ -19,15 +19,11 @@ public class CpuMonitorService {
         this(ManagementFactory.getOperatingSystemMXBean(), ManagementFactory.getRuntimeMXBean());
     }
 
-    //Конструктор для тестов и инъекции зависимостей
     public CpuMonitorService(OperatingSystemMXBean osBean, RuntimeMXBean runtimeBean) {
         this.osBean = osBean;
         this.runtimeBean = runtimeBean;
     }
 
-    /**
-     *Возвращает общую загрузку CPU в процентах
-     */
     public double getSystemCpuLoadPercent() {
         if (osBean instanceof com.sun.management.OperatingSystemMXBean sunOsBean) {
             return normalizeLoadPercent(sunOsBean.getCpuLoad());
@@ -35,9 +31,6 @@ public class CpuMonitorService {
         return -1.0;
     }
 
-    /**
-     *Возвращает загрузку CPU текущим процессом JVM в процентах
-     */
     public double getProcessCpuLoadPercent() {
         if (osBean instanceof com.sun.management.OperatingSystemMXBean sunOsBean) {
             return normalizeLoadPercent(sunOsBean.getProcessCpuLoad());
@@ -45,39 +38,23 @@ public class CpuMonitorService {
         return -1.0;
     }
 
-    /**
-     *Возвращает Load Average за 1 минуту или -1.0 (например, на Windows)
-     */
     public double getSystemLoadAverage() {
         double loadAvg = osBean.getSystemLoadAverage();
         return (Double.isNaN(loadAvg) || loadAvg < 0.0) ? -1.0 : loadAvg;
     }
 
-    /**
-     *Количество доступных логических ядер процессора
-     */
     public int getAvailableProcessors() {
         return osBean.getAvailableProcessors();
     }
 
-    /**
-     *Аптайм процесса JVM в миллисекундах
-     */
     public long getJvmUptimeMillis() {
         return Math.max(0L, runtimeBean.getUptime());
     }
 
-    /**
-     *Аптайм ОС в миллисекундах (из /proc/uptime на Linux)
-     *Если файл недоступен (например, на Windows), возвращает -1L
-     */
     public long getOsUptimeMillis() {
         return readLinuxProcUptimeMillis(PROC_UPTIME_PATH);
     }
 
-    /**
-     *Читает аптайм из файла формата /proc/uptime (первое число — секунды с плавающей точкой)
-     */
     long readLinuxProcUptimeMillis(Path procUptimePath) {
         if (procUptimePath == null || !Files.isReadable(procUptimePath)) {
             return -1L;
@@ -98,10 +75,6 @@ public class CpuMonitorService {
         }
     }
 
-    /**
-     *Переводит сырое значение в проценты
-     *Если значение отрицательное или NaN, возвращает -1.0
-     */
     public double normalizeLoadPercent(double rawLoad) {
         if (Double.isNaN(rawLoad) || rawLoad < 0.0) {
             return -1.0;
@@ -110,9 +83,6 @@ public class CpuMonitorService {
         return Math.min(100.0, percent);
     }
 
-    /**
-     *Форматирует миллисекунды в строку вида: "X дн. Y ч. Z мин. W сек."
-     */
     public String formatDuration(long millis) {
         if (millis < 0L) {
             return "Н/Д";
@@ -138,9 +108,6 @@ public class CpuMonitorService {
         return sb.toString();
     }
 
-    /**
-     *Формирует текстовый отчет для команды /cpu (и для дашборда /status в задаче 2.4)
-     */
     public String getCpuStatusReport() {
         double sysCpu = getSystemCpuLoadPercent();
         double procCpu = getProcessCpuLoadPercent();
@@ -161,9 +128,6 @@ public class CpuMonitorService {
         );
     }
 
-    /**
-     *Формирует текстовый отчет для команды /uptime
-     */
     public String getUptimeReport() {
         long jvmUptime = getJvmUptimeMillis();
         long osUptime = getOsUptimeMillis();

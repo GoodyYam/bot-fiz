@@ -24,7 +24,6 @@ class CpuMonitorServiceTest {
         assertEquals(0.0, service.normalizeLoadPercent(0.0), 0.001);
         assertEquals(42.5, service.normalizeLoadPercent(0.425), 0.001);
         assertEquals(100.0, service.normalizeLoadPercent(1.0), 0.001);
-        // Если JVM вернула значение чуть больше 1.0 из-за погрешности, ограничиваем 100.0
         assertEquals(100.0, service.normalizeLoadPercent(1.05), 0.001);
     }
 

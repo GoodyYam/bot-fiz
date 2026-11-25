@@ -15,4 +15,9 @@ public class AuthorCommand implements Command {
     public String execute(String[] args) {
         return "Авторы проекта: Фрунзе Вадим, Дерда Егор";
     }
+
+    @Override
+    public boolean isPrivate() {
+        return false;
+    }
 }

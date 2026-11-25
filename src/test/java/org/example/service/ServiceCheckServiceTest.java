@@ -35,7 +35,6 @@ class ServiceCheckServiceTest {
 
     @Test
     void testWhitelistValidation() {
-        // Службы из белого списка
         assertTrue(service.isAllowedService("nginx"));
         assertTrue(service.isAllowedService("NGINX"));
         assertTrue(service.isAllowedService("postgresql"));
