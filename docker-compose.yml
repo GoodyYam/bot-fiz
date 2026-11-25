@@ -1,0 +1,8 @@
+services:
+  bot-fiz:
+    build: .
+    container_name: bot-fiz
+    restart: unless-stopped
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - ADMIN_IDS=${ADMIN_IDS}
